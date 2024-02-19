@@ -1,3 +1,11 @@
 build/bin
 node_modules
 frontend/dist
+ent
+resources/database.db
+tmp
+/**/testdata
+resources/databaseV034.db
+resources/log.log
+resources/log
+dist

@@ -1,42 +1,36 @@
-import { useState } from "react";
-import logo from "./assets/images/logo-universal.png";
-import "./App.css";
-import { Greet } from "../wailsjs/go/main/App";
-import { ChakraProvider } from "@chakra-ui/react";
+import React from "react";
+import { RecoilRoot } from "recoil";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { HashRouter, Route, Routes } from "react-router-dom";
+import MetaLayout from "./shared/layout/MetaLayout";
+import SampleApp from "./features/sampleApp/pages/Home";
+import { NextUIProvider } from "@nextui-org/react";
+
 function App() {
-  const [resultText, setResultText] = useState(
-    "Please enter your name below 👇"
-  );
-  const [name, setName] = useState("");
-  const updateName = (e) => setName(e.target.value);
-  const updateResultText = (result) => setResultText(result);
-
-  function greet() {
-    Greet(name).then(updateResultText);
-  }
-
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false,
+        refetchOnReconnect: false,
+        retry: false,
+        staleTime: Infinity,
+      },
+    },
+  });
   return (
-    <ChakraProvider>
-      <div id="App">
-        <img src={logo} id="logo" alt="logo" />
-        <div id="result" className="result">
-          {resultText}
-        </div>
-        <div id="input" className="input-box">
-          <input
-            id="name"
-            className="input"
-            onChange={updateName}
-            autoComplete="off"
-            name="input"
-            type="text"
-          />
-          <button className="btn" onClick={greet}>
-            Greet
-          </button>
-        </div>
-      </div>
-    </ChakraProvider>
+    <NextUIProvider>
+      <RecoilRoot>
+        <QueryClientProvider client={queryClient}>
+          <MetaLayout>
+            <HashRouter basename={"/"}>
+              <Routes>
+                <Route path="/" element={<SampleApp />} />
+              </Routes>
+            </HashRouter>
+          </MetaLayout>
+        </QueryClientProvider>
+      </RecoilRoot>
+    </NextUIProvider>
   );
 }
 
