@@ -7,3 +7,9 @@
     min-height: calc(100vh - theme('spacing.32') - theme('spacing.6'));
 }
 
+
+.tab_card {
+    padding: theme('spacing.10');
+    height: calc(100vh - theme('spacing.32') - theme('spacing.32') + theme('spacing.6'))
+}
+
