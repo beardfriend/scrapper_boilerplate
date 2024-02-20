@@ -7,7 +7,7 @@ function Home() {
   return (
     <>
       <TabLayout>
-        <Tabs aria-label="Dynamic tabs" fullWidth>
+        <Tabs aria-label="Dynamic tabs" fullWidth className="black">
           <Tab key="run" title="RUN">
             <Run />
           </Tab>
