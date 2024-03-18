@@ -1,6 +1,9 @@
 package utils
 
-import "time"
+import (
+	"boilerplate/pkg/types"
+	"time"
+)
 
 func String(s string) *string {
 	result := &s
@@ -17,6 +20,15 @@ func Float64(s float64) *float64 {
 	return result
 }
 
+func DateString(s types.DateString) *types.DateString {
+	result := &s
+	return result
+}
+
+func TimeString(s types.TimeString) *types.TimeString {
+	result := &s
+	return result
+}
 func UBool(s bool) *bool {
 	result := &s
 	return result
